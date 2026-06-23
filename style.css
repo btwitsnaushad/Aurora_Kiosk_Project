@@ -1,0 +1,83 @@
+body { 
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+    /* Premium Deep Slate Gradient */
+    background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%); 
+    margin: 0; 
+    padding: 20px; 
+    /* Base text color ab light (white/grey) hoga */
+    color: #f8fafc; 
+    min-height: 100vh; 
+    box-sizing: border-box; 
+}
+
+/* Glassmorphism Container */
+#app-container { 
+    max-width: 1100px; 
+    margin: 0 auto; 
+    background-color: rgba(30, 41, 59, 0.7); /* Translucent dark slate */
+    backdrop-filter: blur(12px); /* Frosted glass blur */
+    padding: 30px 40px; 
+    border-radius: 12px; 
+    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.3); 
+    border: 1px solid rgba(255, 255, 255, 0.1); /* Subtle glowing border */
+}
+
+#app-header { display: flex; align-items: center; justify-content: space-between; padding: 15px 25px; background: rgba(15, 23, 42, 0.5); border-radius: 10px; margin-bottom: 30px; border: 1px solid rgba(255, 255, 255, 0.05); }
+#app-header h1 { font-size: 22px; margin: 0; flex-grow: 1; color: #1abc9c;}
+#offline-indicator { font-weight: 700; padding: 6px 12px; border-radius: 20px; font-size: 14px; margin-right: 15px; }
+#last-sync-time { font-size: 14px; color: #94a3b8; margin-right: 20px; }
+
+button { cursor: pointer; border: none; padding: 10px 16px; border-radius: 6px; font-weight: 600; transition: all 0.2s; }
+#sync-all-transactions-btn { background-color: #3498db; color: white; }
+#sync-all-transactions-btn:hover { background-color: #2980b9; transform: translateY(-1px); }
+#sync-all-transactions-btn:disabled { background-color: #475569; color: #94a3b8; cursor: not-allowed; transform: none; }
+
+#transaction-entry-form { display: flex; gap: 15px; margin-bottom: 20px; position: relative; }
+
+/* Dark mode inputs */
+input[type="text"] { flex: 1; padding: 12px 15px; border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 8px; font-size: 16px; background-color: rgba(15, 23, 42, 0.6); color: #f8fafc; transition: border 0.3s; }
+input[type="text"]:focus { outline: none; border-color: #3498db; box-shadow: 0 0 0 3px rgba(52,152,219,0.2); }
+input[type="text"]::placeholder { color: #64748b; }
+
+#submit-transaction-btn { background-color: #2ecc71; color: white; font-size: 16px; padding: 12px 25px; border-radius: 8px;}
+#submit-transaction-btn:hover { background-color: #27ae60; }
+
+#validation-errors { color: #ff6b6b; margin-bottom: 15px; font-weight: bold; }
+#status-notifications { position: fixed; top: 25px; right: 25px; background-color: #1e293b; color: white; padding: 15px 25px; border-radius: 8px; box-shadow: 0 10px 25px rgba(0,0,0,0.4); border: 1px solid rgba(255,255,255,0.1); z-index: 9999; font-weight: bold; animation: slideIn 0.4s ease-out; }
+#status-notifications:empty { display: none; }
+@keyframes slideIn { from { transform: translateX(100%); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+
+/* Fix JS inline styling for dropdown in dark mode */
+#book-suggestions-dropdown { background-color: #1e293b !important; border: 1px solid rgba(255, 255, 255, 0.1) !important; color: #f8fafc !important; }
+#book-suggestions-dropdown div { border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important; }
+#book-suggestions-dropdown div:hover { background-color: rgba(255, 255, 255, 0.05) !important; }
+
+/* Dark mode table */
+#transaction-log-display { overflow-x: auto; background: rgba(15, 23, 42, 0.3); border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.05); }
+table { width: 100%; border-collapse: collapse; font-size: 15px; }
+th, td { text-align: left; padding: 15px; border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
+th { background-color: rgba(255, 255, 255, 0.03); color: #cbd5e1; font-weight: 600; text-transform: uppercase; font-size: 13px;}
+tbody tr { transition: background-color 0.2s ease; }
+tbody tr:hover { background-color: rgba(255, 255, 255, 0.03); }
+
+/* Action Buttons */
+.remove-record-btn { background-color: #e74c3c; color: white; padding: 6px 12px; font-size: 13px; margin-right: 8px; margin-bottom: 6px; display: inline-block; }
+.remove-record-btn:hover { background-color: #c0392b; }
+
+.mark-returned-btn { background-color: #9b59b6; color: white; padding: 6px 12px; font-size: 13px; margin-bottom: 6px; display: inline-block; }
+.mark-returned-btn:hover { background-color: #8e44ad; }
+.mark-returned-btn:disabled { background-color: rgba(255, 255, 255, 0.05); color: #64748b; cursor: not-allowed; }
+
+.status-pill { padding: 6px 12px; border-radius: 20px; font-size: 11px; font-weight: 700; display: inline-block; text-align: center; max-width: 160px; white-space: normal; }
+
+/* TRD Compliance Colors (DO NOT TOUCH THESE) */
+.pill-pending { background-color: #fff3cd; color: #856404; } /* Yellow */
+.pill-synced { background-color: #d4edda; color: #155724; } /* Green */
+.pill-failed { background-color: #f8d7da; color: #721c24; } /* Red */
+.pill-returned { background-color: #cce5ff; color: #004085; } /* Blue */
+
+@media (max-width: 850px) { 
+    #app-header, #transaction-entry-form { flex-direction: column; } 
+    #submit-transaction-btn { width: 100%; } 
+    #app-container { padding: 15px; } 
+}

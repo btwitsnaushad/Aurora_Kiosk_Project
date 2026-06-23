@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aurora Kiosk | Transaction Portal</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="app-container">
+        <header id="app-header">
+            <h1>Aurora Kiosk | Transaction Portal</h1>
+            <span id="offline-indicator">ONLINE</span>
+            <span id="last-sync-time">Last Sync: Never</span>
+            <button id="sync-all-transactions-btn">Sync Now</button>
+        </header>
+
+        <form id="transaction-entry-form">
+            <input type="text" id="book-title-input" placeholder="Enter Book Title" data-min-length="3">
+            <div id="book-suggestions-dropdown" style="display: none;"></div>
+            
+            <input type="text" id="patron-id-input" placeholder="P12345" data-format-regex="^P[0-9]{5}$">
+            
+            <button type="submit" id="submit-transaction-btn">Log Transaction</button>
+        </form>
+
+        <div id="validation-errors"></div>
+        <div id="status-notifications"></div>
+
+        <div id="transaction-log-display">
+            <table id="transaction-records-table">
+                <thead>
+                    <tr>
+                        <th>Transaction ID</th>
+                        <th>Book Title</th>
+                        <th>Patron ID</th>
+                        <th>Checkout Time</th>
+                        <th>Sync Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="transaction-records-body">
+                </tbody>
+                <tfoot id="summary-footer">
+                    <tr>
+                        <td colspan="6">Total Transactions: 0 | Pending Sync: 0 | Synced: 0</td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+    
+    <script src="app.js"></script>
+</body>
+</html>
